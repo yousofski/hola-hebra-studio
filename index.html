@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hebra Studio — Youssef Bensaid</title>
+<meta name="description" content="Sistemas que contestan solos los mensajes de tu negocio. Habla con la recepcionista y compruébalo.">
+<meta name="theme-color" content="#0C1B33">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="assets/hebra-logo.svg" type="image/svg+xml">
+<meta property="og:title" content="Hebra Studio — Youssef Bensaid">
+<meta property="og:description" content="Sistemas que contestan solos los mensajes de tu negocio.">
+<meta property="og:type" content="website">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   hola.hebra.studio · página puntero
+   Paleta y vocabulario copiados de hebra.studio (tailwind.config.js).
+   Sin dependencias externas: fuentes propias, iconos dibujados.
+   ═══════════════════════════════════════════════════════════════════ */
+
+@font-face{font-family:'Montserrat';src:url('assets/fonts/montserrat-v31-latin.woff2') format('woff2');font-weight:400 800;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/montserrat-v31-latin-ext.woff2') format('woff2');font-weight:400 800;font-style:normal;font-display:swap;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Playfair Display';src:url('assets/fonts/playfair-display-v40-latin.woff2') format('woff2');font-weight:400 800;font-style:normal;font-display:swap;}
+
+:root{
+  --navy-900:#0C1B33; --navy-800:#112440; --navy-700:#1A365D;
+  --copper-500:#B87333; --copper-400:#D79A5F; --copper-300:#E5A97C;
+  --bone-50:#FAFAFA; --bone-200:#F4E6D8;
+  --verdigris-300:#8CC5B4;
+  color-scheme: dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; min-height:100svh;
+  padding:clamp(2rem,7vh,4.5rem) 1.25rem calc(2rem + env(safe-area-inset-bottom));
+  display:flex; flex-direction:column; align-items:center;
+  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--bone-50);
+  background:
+    radial-gradient(58rem 30rem at 50% -8%, rgba(184,115,51,.16) 0%, rgba(184,115,51,0) 62%),
+    radial-gradient(70rem 55rem at 50% 2%, var(--navy-700) 0%, var(--navy-800) 44%, var(--navy-900) 100%),
+    var(--navy-900);
+  background-attachment:fixed;
+  -webkit-font-smoothing:antialiased;
+}
+@media (max-width:640px){ body{background-attachment:scroll} }
+
+main{width:100%; max-width:26rem; display:flex; flex-direction:column; gap:1.75rem}
+
+/* ── Entrada orquestada, una sola vez ─────────────────────────────── */
+.rise{opacity:0; transform:translateY(14px); animation:rise .8s cubic-bezier(.22,1,.36,1) forwards}
+.rise:nth-child(1){animation-delay:.05s} .rise:nth-child(2){animation-delay:.14s}
+.rise:nth-child(3){animation-delay:.23s} .rise:nth-child(4){animation-delay:.32s}
+.rise:nth-child(5){animation-delay:.41s}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){ .rise{animation:none;opacity:1;transform:none} }
+
+/* ── Cabecera ─────────────────────────────────────────────────────── */
+.hero{display:flex; flex-direction:column; align-items:center; text-align:center; gap:1rem}
+.marca{width:min(15rem,72%); height:auto; display:block;
+  filter:drop-shadow(0 0 42px rgba(184,115,51,.34)) drop-shadow(0 12px 30px rgba(0,0,0,.45))}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:.5rem; position:relative;
+  padding:.45rem 1rem; border-radius:999px; background:rgba(12,27,51,.45);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  font-size:.6875rem; font-weight:700; letter-spacing:.3em; text-transform:uppercase;
+  background-image:none;
+}
+.eyebrow::before{
+  content:""; position:absolute; inset:0; border-radius:inherit; padding:1px;
+  background:linear-gradient(90deg,var(--copper-500),#C68444,var(--copper-400));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;
+}
+.eyebrow span{
+  background:linear-gradient(90deg,var(--copper-400),var(--copper-300));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.lema{margin:0; font-size:1.0625rem; line-height:1.5; color:rgba(250,250,250,.74); text-wrap:pretty; max-width:22rem}
+.lema b{color:var(--bone-50); font-weight:600}
+
+/* ── Tarjetas ─────────────────────────────────────────────────────── */
+.enlace{
+  position:relative; display:flex; align-items:center; gap:.9rem;
+  min-height:56px; padding:1rem 1.15rem; border-radius:18px;
+  text-decoration:none; color:var(--bone-50);
+  background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  transition:background-color .3s ease,border-color .3s ease,transform .3s ease;
+}
+.enlace:hover{background:rgba(255,255,255,.085); border-color:rgba(255,255,255,.22); transform:translateY(-2px)}
+.enlace:active{transform:translateY(0)}
+.enlace:focus-visible{outline:2px solid var(--copper-400); outline-offset:3px}
+/* la luz de cobre viaja por el BORDE, nunca por la cara: contraste intacto */
+.enlace::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; padding:1px;
+  background:radial-gradient(170px circle at var(--gx,50%) var(--gy,50%),
+    rgba(184,115,51,.95), rgba(184,115,51,0) 72%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  pointer-events:none; opacity:0; transition:opacity .3s ease;
+}
+.enlace:hover::after{opacity:1}
+.enlace .ico{flex:0 0 auto; width:22px; height:22px; color:var(--copper-300)}
+.enlace .txt{display:flex; flex-direction:column; gap:.15rem; min-width:0}
+.enlace .t{font-weight:600; font-size:1rem; line-height:1.25}
+.enlace .s{font-size:.8125rem; line-height:1.35; color:rgba(250,250,250,.55)}
+.enlace .flecha{margin-left:auto; flex:0 0 auto; width:18px; height:18px; color:rgba(250,250,250,.35); transition:transform .3s ease,color .3s ease}
+.enlace:hover .flecha{transform:translateX(3px); color:var(--copper-300)}
+
+/* ── La principal ─────────────────────────────────────────────────── */
+.principal{
+  background-image:linear-gradient(105deg,var(--copper-400) 0%,var(--copper-300) 55%,var(--copper-400) 100%);
+  background-color:transparent; border-color:transparent; color:var(--navy-700);
+  padding:1.25rem 1.25rem; border-radius:20px;
+  box-shadow:0 0 34px rgba(184,115,51,.34);
+}
+.principal:hover{background-color:transparent; border-color:transparent;
+  box-shadow:0 0 52px rgba(184,115,51,.52); transform:translateY(-2px)}
+.principal::after{display:none}
+.principal .ico,.principal .flecha{color:var(--navy-700)}
+.principal .t{font-family:'Playfair Display',Georgia,serif; font-size:1.2rem; font-weight:800; letter-spacing:-.01em}
+.principal .s{color:rgba(12,27,51,.72); font-weight:500}
+.principal:hover .flecha{color:var(--navy-700)}
+
+.grupo{display:flex; flex-direction:column; gap:.7rem}
+.rotulo{
+  margin:0 0 -.15rem .25rem; font-size:.6875rem; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase; color:rgba(250,250,250,.38);
+}
+
+footer{
+  margin-top:.5rem; text-align:center; font-size:.75rem; line-height:1.7;
+  color:rgba(250,250,250,.38);
+}
+footer a{color:rgba(250,250,250,.55); text-decoration:none; border-bottom:1px solid rgba(184,115,51,.35)}
+footer a:hover{color:var(--copper-300)}
+::selection{background:var(--copper-500); color:var(--navy-900)}
+</style>
+</head>
+<body>
+<main>
+
+  <header class="hero rise">
+    <img class="marca" src="assets/hebra-logo.svg" alt="Hebra Studio" width="252" height="167">
+    <div class="eyebrow"><span>Ingeniero Artesano</span></div>
+    <p class="lema">Desenredo el caos operativo de tu negocio.<br><b>Sistemas que contestan solos los mensajes que te entran.</b></p>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       EDITA AQUÍ. Cada bloque <a class="enlace"> es un botón.
+       Para cambiar de demo: cambia el href y los dos textos.
+       Para añadir otra: copia un bloque entero y pégalo debajo.
+       Para quitarla: borra el bloque. No hay nada más que tocar.
+       ══════════════════════════════════════════════════════════ -->
+
+  <a class="enlace principal rise" href="https://hebra.studio/casos-de-uso/recepcion">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/>
+      <path d="M8.5 10.5h7M8.5 14h4"/>
+    </svg>
+    <span class="txt">
+      <span class="t">Habla con la recepcionista</span>
+      <span class="s">Escríbele como si fueras un cliente. Contesta sola, en tu idioma.</span>
+    </span>
+    <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+
+  <div class="grupo rise">
+    <p class="rotulo">Y si prefieres hablar conmigo</p>
+
+    <a class="enlace" href="https://wa.me/34621377571">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 11.5a8.4 8.4 0 0 1-12.8 7.4L3 21l1.9-5.2A8.4 8.4 0 1 1 21 11.5Z"/>
+        <path d="M9 9.6c.3 1.6 1.4 3.2 2.9 4.2 1 .7 2.1 1 2.6.8.4-.2.8-.9.9-1.3l-1.9-1-.9.9c-.9-.5-1.6-1.2-2.1-2.1l.9-.9-1-1.9c-.4.1-1.1.5-1.3.9-.1.2-.2.4-.1.4Z"/>
+      </svg>
+      <span class="txt"><span class="t">Escríbeme por WhatsApp</span><span class="s">Te contesto yo, no un sistema</span></span>
+      <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="enlace" href="tel:+34621377571">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.9v2.5a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 3.7 2 2 0 0 1 4.1 1.5h2.5a2 2 0 0 1 2 1.7c.1 1 .3 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.7 9.3a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.9.4 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
+      </svg>
+      <span class="txt"><span class="t">Llámame</span><span class="s">621 377 571</span></span>
+      <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="enlace" href="https://hebra.studio">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/>
+      </svg>
+      <span class="txt"><span class="t">hebra.studio</span><span class="s">Quién soy, qué construyo y a qué precio</span></span>
+      <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <footer class="rise">
+    Youssef Bensaid Sennaria · Madrid<br>
+    <a href="https://hebra.studio/verificable">Todo lo que digo es verificable</a>
+  </footer>
+
+</main>
+
+<script>
+/* La luz de cobre que sigue al cursor, como en hebra.studio.
+   Sin ratón (móvil) no se activa, y con movimiento reducido tampoco. */
+(function () {
+  if (!window.matchMedia) return;
+  if (!matchMedia('(hover: hover)').matches) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.addEventListener('pointermove', function (e) {
+    var t = e.target;
+    var el = t && t.closest ? t.closest('.enlace') : null;
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    el.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
