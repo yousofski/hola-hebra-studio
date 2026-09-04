@@ -38,7 +38,7 @@ body{
   margin:0; min-height:100svh;
   padding:clamp(2rem,7vh,4.5rem) 1.25rem calc(2rem + env(safe-area-inset-bottom));
   display:flex; flex-direction:column; align-items:center;
-  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-family:'Montserrat','Noto Naskh Arabic','Geeza Pro',system-ui,-apple-system,'Segoe UI',sans-serif;
   color:var(--bone-50);
   background:
     radial-gradient(58rem 30rem at 50% -8%, rgba(184,115,51,.16) 0%, rgba(184,115,51,0) 62%),
@@ -111,7 +111,7 @@ main{width:100%; max-width:26rem; display:flex; flex-direction:column; gap:1.75r
 .enlace .txt{display:flex; flex-direction:column; gap:.15rem; min-width:0}
 .enlace .t{font-weight:600; font-size:1rem; line-height:1.25}
 .enlace .s{font-size:.8125rem; line-height:1.35; color:rgba(250,250,250,.55)}
-.enlace .flecha{margin-left:auto; flex:0 0 auto; width:18px; height:18px; color:rgba(250,250,250,.35); transition:transform .3s ease,color .3s ease}
+.enlace .flecha{margin-inline-start:auto; flex:0 0 auto; width:18px; height:18px; color:rgba(250,250,250,.35); transition:transform .3s ease,color .3s ease}
 .enlace:hover .flecha{transform:translateX(3px); color:var(--copper-300)}
 
 /* ── La principal ─────────────────────────────────────────────────── */
@@ -131,7 +131,7 @@ main{width:100%; max-width:26rem; display:flex; flex-direction:column; gap:1.75r
 
 .grupo{display:flex; flex-direction:column; gap:.7rem}
 .rotulo{
-  margin:0 0 -.15rem .25rem; font-size:.6875rem; font-weight:700;
+  margin:0 0 -.15rem; margin-inline-start:.25rem; font-size:.6875rem; font-weight:700;
   letter-spacing:.22em; text-transform:uppercase; color:rgba(250,250,250,.38);
 }
 
@@ -141,16 +141,55 @@ footer{
 }
 footer a{color:rgba(250,250,250,.55); text-decoration:none; border-bottom:1px solid rgba(184,115,51,.35)}
 footer a:hover{color:var(--copper-300)}
+
+/* ── Selector de idioma ───────────────────────────────────────────── */
+.idiomas{
+  position:fixed; z-index:20;
+  top:calc(.8rem + env(safe-area-inset-top));
+  inset-inline-end:calc(.9rem + env(safe-area-inset-right));
+  display:flex; gap:2px; padding:3px; border-radius:999px;
+  background:rgba(12,27,51,.55); border:1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.idiomas button{
+  appearance:none; -webkit-appearance:none; border:0; background:transparent;
+  cursor:pointer; font-family:inherit; font-size:.6875rem; font-weight:700;
+  letter-spacing:.06em; padding:.32rem .52rem; border-radius:999px;
+  color:rgba(250,250,250,.55); transition:color .25s ease,background-color .25s ease;
+}
+.idiomas button:hover{color:var(--bone-50)}
+.idiomas button[aria-current="true"]{background:var(--copper-500); color:var(--navy-900)}
+.idiomas button:focus-visible{outline:2px solid var(--copper-400); outline-offset:2px}
+@media (max-width:360px){ .idiomas button{padding:.3rem .4rem; font-size:.625rem} }
+
+/* ── Bidireccionalidad ────────────────────────────────────────────── */
+/* Un teléfono o un correo NUNCA se invierten, aunque la página sea RTL. */
+.ltr{direction:ltr; unicode-bidi:isolate}
+[dir="rtl"] .enlace .flecha{transform:scaleX(-1)}
+[dir="rtl"] .enlace:hover .flecha{transform:scaleX(-1) translateX(3px)}
+/* El árabe es cursivo: el espaciado entre letras rompe las ligaduras. */
+[lang="ar"] .eyebrow{letter-spacing:0; font-size:.75rem}
+[lang="ar"] .rotulo{letter-spacing:.02em}
+[lang="ar"] .principal .t{font-family:'Noto Naskh Arabic','Geeza Pro',Georgia,serif;
+  letter-spacing:0; font-weight:700; line-height:1.45}
+[lang="ar"] .lema{line-height:1.7}
+
 ::selection{background:var(--copper-500); color:var(--navy-900)}
 </style>
 </head>
 <body>
+<nav class="idiomas" aria-label="Idioma / Language">
+  <button type="button" data-lang="es" lang="es" aria-label="Español">ES</button>
+  <button type="button" data-lang="en" lang="en" aria-label="English">EN</button>
+  <button type="button" data-lang="fr" lang="fr" aria-label="Français">FR</button>
+  <button type="button" data-lang="ar" lang="ar" aria-label="العربية">AR</button>
+</nav>
 <main>
 
   <header class="hero rise">
     <img class="marca" src="assets/hebra-logo.svg" alt="Hebra Studio" width="252" height="167">
-    <div class="eyebrow"><span>Ingeniero Artesano</span></div>
-    <p class="lema">Desenredo el caos operativo de tu negocio.<br><b>Sistemas que contestan solos los mensajes que te entran.</b></p>
+    <div class="eyebrow"><span data-i18n="eyebrow">Ingeniero Artesano</span></div>
+    <p class="lema"><span data-i18n="lema1">Desenredo el caos operativo de tu negocio.</span><br><b data-i18n="lema2">Sistemas que contestan solos los mensajes que te entran.</b></p>
   </header>
 
   <!-- ══════════════════════════════════════════════════════════════
@@ -166,21 +205,21 @@ footer a:hover{color:var(--copper-300)}
       <path d="M8.5 10.5h7M8.5 14h4"/>
     </svg>
     <span class="txt">
-      <span class="t">Habla con la recepcionista</span>
-      <span class="s">Escríbele como si fueras un cliente. Contesta sola, en tu idioma.</span>
+      <span class="t" data-i18n="pt">Habla con la recepcionista</span>
+      <span class="s" data-i18n="ps">Escríbele como si fueras un cliente. Contesta sola, en tu idioma.</span>
     </span>
     <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 
   <div class="grupo rise">
-    <p class="rotulo">Y si prefieres hablar conmigo</p>
+    <p class="rotulo" data-i18n="rotulo">Y si prefieres hablar conmigo</p>
 
     <a class="enlace" href="https://wa.me/34621377571">
       <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21 11.5a8.4 8.4 0 0 1-12.8 7.4L3 21l1.9-5.2A8.4 8.4 0 1 1 21 11.5Z"/>
         <path d="M9 9.6c.3 1.6 1.4 3.2 2.9 4.2 1 .7 2.1 1 2.6.8.4-.2.8-.9.9-1.3l-1.9-1-.9.9c-.9-.5-1.6-1.2-2.1-2.1l.9-.9-1-1.9c-.4.1-1.1.5-1.3.9-.1.2-.2.4-.1.4Z"/>
       </svg>
-      <span class="txt"><span class="t">Escríbeme por WhatsApp</span><span class="s">Te contesto yo, no un sistema</span></span>
+      <span class="txt"><span class="t" data-i18n="wat">Escríbeme por WhatsApp</span><span class="s" data-i18n="was">Te contesto yo, no un sistema</span></span>
       <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
 
@@ -188,7 +227,16 @@ footer a:hover{color:var(--copper-300)}
       <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M22 16.9v2.5a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 3.7 2 2 0 0 1 4.1 1.5h2.5a2 2 0 0 1 2 1.7c.1 1 .3 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.7 9.3a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.9.4 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
       </svg>
-      <span class="txt"><span class="t">Llámame</span><span class="s">621 377 571</span></span>
+      <span class="txt"><span class="t" data-i18n="telt">Llámame</span><span class="s ltr">621 377 571</span></span>
+      <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="enlace" href="mailto:hola@hebra.studio">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2.5" y="4.75" width="19" height="14.5" rx="2.2"/>
+        <path d="M3.2 6.6 12 13.1l8.8-6.5"/>
+      </svg>
+      <span class="txt"><span class="t" data-i18n="mailt">Escríbeme un correo</span><span class="s ltr">hola@hebra.studio</span></span>
       <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
 
@@ -196,14 +244,14 @@ footer a:hover{color:var(--copper-300)}
       <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/>
       </svg>
-      <span class="txt"><span class="t">hebra.studio</span><span class="s">Quién soy, qué construyo y a qué precio</span></span>
+      <span class="txt"><span class="t ltr">hebra.studio</span><span class="s" data-i18n="webs">Quién soy, qué construyo y a qué precio</span></span>
       <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </div>
 
   <footer class="rise">
-    Youssef Bensaid Sennaria · Madrid<br>
-    <a href="https://hebra.studio/verificable">Todo lo que digo es verificable</a>
+    <span data-i18n="pie">Youssef Bensaid Sennaria · Madrid</span><br>
+    <a href="https://hebra.studio/verificable" data-i18n="verif">Todo lo que digo es verificable</a>
   </footer>
 
 </main>
@@ -223,6 +271,138 @@ footer a:hover{color:var(--copper-300)}
     el.style.setProperty('--gx', (e.clientX - r.left) + 'px');
     el.style.setProperty('--gy', (e.clientY - r.top) + 'px');
   }, { passive: true });
+})();
+</script>
+
+<script>
+/* ═══ Idiomas ══════════════════════════════════════════════════════════
+   El castellano vive en el HTML: si el JavaScript falla, la pagina sigue
+   funcionando en castellano. Los otros tres se aplican al cargar.
+
+   La preferencia se guarda en la cookie hs_lang de .hebra.studio, que es
+   EXACTAMENTE la misma que lee hebra.studio (src/i18n/config.ts). Asi que
+   quien elija frances aqui, aterriza en frances al pulsar cualquier enlace.
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+  var LANGS = ['es','en','fr','ar'];
+  var T = {
+  "es": {
+    "title": "Hebra Studio — Youssef Bensaid",
+    "desc": "Sistemas que contestan solos los mensajes de tu negocio. Habla con la recepcionista y compruébalo.",
+    "eyebrow": "Ingeniero Artesano",
+    "lema1": "Desenredo el caos operativo de tu negocio.",
+    "lema2": "Sistemas que contestan solos los mensajes que te entran.",
+    "pt": "Habla con la recepcionista",
+    "ps": "Escríbele como si fueras un cliente. Contesta sola, en tu idioma.",
+    "rotulo": "Y si prefieres hablar conmigo",
+    "wat": "Escríbeme por WhatsApp",
+    "was": "Te contesto yo, no un sistema",
+    "telt": "Llámame",
+    "mailt": "Escríbeme un correo",
+    "webs": "Quién soy, qué construyo y a qué precio",
+    "pie": "Youssef Bensaid Sennaria · Madrid",
+    "verif": "Todo lo que digo es verificable"
+  },
+  "en": {
+    "title": "Hebra Studio — Youssef Bensaid",
+    "desc": "Systems that answer your business's messages on their own. Talk to the receptionist and see for yourself.",
+    "eyebrow": "Artisan Engineer",
+    "lema1": "I untangle your business's operational chaos.",
+    "lema2": "Systems that answer your incoming messages on their own.",
+    "pt": "Talk to the receptionist",
+    "ps": "Write as if you were a customer. It answers on its own, in your language.",
+    "rotulo": "And if you'd rather talk to me",
+    "wat": "Message me on WhatsApp",
+    "was": "You get me, not a system",
+    "telt": "Call me",
+    "mailt": "Send me an email",
+    "webs": "Who I am, what I build and at what price",
+    "pie": "Youssef Bensaid Sennaria · Madrid",
+    "verif": "Everything I say is verifiable"
+  },
+  "fr": {
+    "title": "Hebra Studio — Youssef Bensaid",
+    "desc": "Des systèmes qui répondent seuls aux messages de votre entreprise. Parlez à la réceptionniste et jugez par vous-même.",
+    "eyebrow": "Ingénieur Artisan",
+    "lema1": "Je démêle le chaos opérationnel de votre entreprise.",
+    "lema2": "Des systèmes qui répondent seuls aux messages que vous recevez.",
+    "pt": "Parlez à la réceptionniste",
+    "ps": "Écrivez-lui comme si vous étiez client. Elle répond seule, dans votre langue.",
+    "rotulo": "Et si vous préférez me parler",
+    "wat": "Écrivez-moi sur WhatsApp",
+    "was": "C'est moi qui réponds, pas un système",
+    "telt": "Appelez-moi",
+    "mailt": "Écrivez-moi un e-mail",
+    "webs": "Qui je suis, ce que je construis et à quel prix",
+    "pie": "Youssef Bensaid Sennaria · Madrid",
+    "verif": "Tout ce que je dis est vérifiable"
+  },
+  "ar": {
+    "title": "Hebra Studio — Youssef Bensaid",
+    "desc": "أنظمة تردّ وحدها على رسائل عملك. تحدّث مع موظف الاستقبال وتحقّق بنفسك.",
+    "eyebrow": "مهندس حِرَفي",
+    "lema1": "أفكّ تشابك الفوضى التشغيلية في عملك.",
+    "lema2": "أنظمة تردّ وحدها على الرسائل التي تصلك.",
+    "pt": "تحدّث مع موظف الاستقبال",
+    "ps": "راسِله كأنك عميل. يردّ وحده، بلغتك.",
+    "rotulo": "وإن كنت تفضّل التحدث معي",
+    "wat": "راسلني على واتساب",
+    "was": "أردّ أنا، لا نظام",
+    "telt": "اتصل بي",
+    "mailt": "راسلني بالبريد الإلكتروني",
+    "webs": "من أنا، وما الذي أبنيه، وبأي سعر",
+    "pie": "يوسف بنسعيد سنارية · مدريد",
+    "verif": "كل ما أقوله قابل للتحقق"
+  }
+};
+
+  function leer() {
+    try {
+      var q = new URLSearchParams(location.search).get('lang');
+      if (LANGS.indexOf(q) > -1) return q;
+    } catch (e) {}
+    var m = document.cookie.match(/(?:^|;\s*)hs_lang=([^;]*)/);
+    if (m) { var c = decodeURIComponent(m[1]); if (LANGS.indexOf(c) > -1) return c; }
+    try { var s = localStorage.getItem('hs_lang'); if (LANGS.indexOf(s) > -1) return s; } catch (e) {}
+    return 'es';
+  }
+
+  function meta(sel, val) { var el = document.querySelector(sel); if (el) el.setAttribute('content', val); }
+
+  function aplicar(lang, guardar) {
+    var d = T[lang] || T.es;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    var nodos = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < nodos.length; i++) {
+      var k = nodos[i].getAttribute('data-i18n');
+      if (d[k] != null) nodos[i].textContent = d[k];
+    }
+    document.title = d.title;
+    meta('meta[name="description"]', d.desc);
+    meta('meta[property="og:title"]', d.title);
+    meta('meta[property="og:description"]', d.desc);
+    var b = document.querySelectorAll('.idiomas button');
+    for (var j = 0; j < b.length; j++) {
+      b[j].setAttribute('aria-current', String(b[j].getAttribute('data-lang') === lang));
+    }
+    if (guardar) {
+      try { localStorage.setItem('hs_lang', lang); } catch (e) {}
+      try {
+        document.cookie = 'hs_lang=' + encodeURIComponent(lang) +
+          ';domain=.hebra.studio;path=/;max-age=' + (365 * 24 * 3600) + ';SameSite=Lax;Secure';
+      } catch (e) {}
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    var btn = t && t.closest ? t.closest('.idiomas button') : null;
+    if (!btn) return;
+    aplicar(btn.getAttribute('data-lang'), true);
+  });
+
+  aplicar(leer(), false);
 })();
 </script>
 </body>
