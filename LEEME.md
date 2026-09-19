@@ -25,6 +25,28 @@ del visitante no llegue a `fonts.gstatic.com`, y esta página respeta la misma p
 
 ---
 
+## Qué enlaces hay ahora — 19 de septiembre de 2026
+
+| Enlace | Papel |
+|---|---|
+| **Talleres de moto** (`/talleres-de-moto`) | El principal, en cobre. Lo que contesta al que aún no es cliente tuyo |
+| WhatsApp · teléfono · correo | «Y si prefieres hablar conmigo» |
+| La web | `hebra.studio` |
+| Verificable y privacidad | En el pie |
+
+🔴 Los textos viven en el diccionario T de index.html, en cuatro idiomas: cambiar el HTML sin cambiar T no cambia nada en el navegador.
+
+🔴 **LinkedIn no está, y es una decisión, no un olvido.** El dueño de una peluquería o de un taller
+de motos no entra en LinkedIn; el QR de la tarjeta se lo va a escanear él, en su mostrador. LinkedIn
+sigue siendo canal, pero para el comprador mediano, y no pinta nada en esta página.
+
+🔴 **Falta un enlace a la política de privacidad, y tiene fecha.** Cuando un dueño te da su móvil en
+la puerta tienes el deber de informarle (art. 13 RGPD). Con la política enlazada aquí, **entregar la
+tarjeta cumple ese deber sin decir una palabra más**. Las tarjetas están encargadas. Detalle en
+`03-Legal-RGPD/RGPD-08-RAT-Responsable-art30.md`, actividad 4.
+
+---
+
 ## Cómo cambiar los enlaces
 
 Abre `index.html` y busca el comentario que dice **EDITA AQUÍ**. Cada botón es un bloque
@@ -63,3 +85,5 @@ Ya no está en el camino del QR.
 - Ponte el sistema en **modo claro** y recárgala: tiene que seguir viéndose navy. Esta página no
   obedece al modo del visitante, tiene color propio.
 - Escanea el QR de verdad, con el móvil, desde la tarjeta impresa cuando la tengas.
+
+LinkStack retirado el 12-09-2026; su configuración está en `_archivo/linkstack-2026-09/`.
